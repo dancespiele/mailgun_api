@@ -44,8 +44,8 @@ async fn shoul_send_email_with_text() {
 MAILGUN_DOMAIN=[YOUR DOMAIN]
 MAILGUN_SECRET=[YOUR MAILGUN API SECRET]
 MAILGUN_ENDPOINT=[MAILGUN ENDPOINT] // There is two endpoint currently: api.mailgun.net and api.eu.mailgun.net
-EMAIL_RECEIVER_TEST=EMAIL RECEIVER TEST
-EMAIL_FROM=SENDER TEST
+EMAIL_RECEIVER_TEST=[EMAIL RECEIVER TEST]
+EMAIL_FROM=[SENDER TEST]
 ```
 
 2. Execute the test `cargo test`
