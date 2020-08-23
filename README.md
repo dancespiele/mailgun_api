@@ -75,4 +75,4 @@ EMAIL_FROM=[SENDER TEST]
 
 ## License
 
-Yew Style is [MIT](LICENSE) licensed
+Mailgun API is [MIT](LICENSE) licensed
