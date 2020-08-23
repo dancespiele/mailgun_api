@@ -1,6 +1,6 @@
 //! # Mailgun API
 //!
-//! Send emails through mailgun
+//! Send emails through mailgun in rust
 //!
 //! ## How install it
 //! 1. add the dependency in the Cargo.toml file of the project:
