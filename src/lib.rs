@@ -54,7 +54,7 @@
 //!
 //! 2. Execute the test `cargo test`
 //!
-//! *Warning:* when you are running the tests you are sending a email to the receiver that you set
+//! **Warning:** when you are running the tests you are sending a email to the receiver that you set
 //!
 
 mod api;

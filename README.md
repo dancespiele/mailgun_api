@@ -50,7 +50,7 @@ EMAIL_FROM=SENDER TEST
 
 2. Execute the test `cargo test`
 
-*Warning:* when you are running the tests you are sending a email to the receiver that you set
+**Warning:** when you are running the tests you are sending a email to the receiver that you set
 
 ## Do you like Mailgun API?
 * If you like Mailgun API, help us supporting the project with [Github Sponsors](https://github.com/sponsors/dancespiele) or with grants in [Gitcoin](https://gitcoin.co/grants/1078/mailgun-api)
