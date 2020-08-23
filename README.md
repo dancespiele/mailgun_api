@@ -39,6 +39,8 @@ async fn shoul_send_email_with_text() {
 
 ## How test it
 1. Create a .env file and add the next parameters:
+
+```
 MAILGUN_DOMAIN=[YOUR DOMAIN]
 MAILGUN_SECRET=[YOUR MAILGUN API SECRET]
 MAILGUN_ENDPOINT=[MAILGUN ENDPOINT] // There is two endpoint currently: api.mailgun.net and api.eu.mailgun.net
@@ -46,6 +48,7 @@ EMAIL_RECEIVER_TEST=EMAIL RECEIVER TEST
 EMAIL_FROM=SENDER TEST
 2. Execute the test `cargo test`
 *Warning:* when you are running the tests you are sending a email to the receiver that you set
+```
 
 ## Do you like Mailgun API?
 * If you like Mailgun API, help us supporting the project with [Github Sponsors](https://github.com/sponsors/dancespiele) or with grants in [Gitcoin](https://gitcoin.co/grants/1078/mailgun-api)
