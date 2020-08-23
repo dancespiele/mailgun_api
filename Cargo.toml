@@ -1,8 +1,12 @@
 [package]
 name = "mailgun_api"
 version = "0.0.1"
-authors = ["spieljs <spieljs@gmail.com>"]
+description = "Api for Mailgun"
+authors = ["Francisco Jesus Navarro Cortes <spieljs@gmail.com>"]
 edition = "2018"
+license = "MIT"
+repository = "https://github.com/spielrs/mailgun_api"
+categories = ["email", "asynchronous"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
