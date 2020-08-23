@@ -1,11 +1,14 @@
 [package]
 name = "mailgun_api"
 version = "0.1.0"
-description = "Api for Mailgun"
+description = "Api for Mailgun in rust"
+documentation = "https://docs.rs/crate/mailgun_api"
 authors = ["Francisco Jesus Navarro Cortes <spieljs@gmail.com>"]
 edition = "2018"
 license = "MIT"
 repository = "https://github.com/spielrs/mailgun_api"
+readme = "README.md"
+
 categories = ["email", "asynchronous"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
