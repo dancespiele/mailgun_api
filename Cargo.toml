@@ -1,6 +1,6 @@
 [package]
 name = "mailgun_api"
-version = "0.1.0"
+version = "0.1.1"
 description = "Api for Mailgun in rust"
 documentation = "https://docs.rs/crate/mailgun_api"
 authors = ["Francisco Jesus Navarro Cortes <spieljs@gmail.com>"]
