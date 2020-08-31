@@ -2,9 +2,9 @@
 
 <div align="center">
     <p>
-        <a href="https://crates.io/crates/mailgun_api"><img alt="Crate Info" src="https://img.shields.io/badge/yew__styles-framework%20styles-brightgreen"/></a>
-        <a href="https://docs.rs/mailgun_api"><img alt="API Docs" src="https://img.shields.io/badge/yew__styles-docs-informational"/></a>
-        <a href="https://discord.gg/ZHWmUaf"><img alt="Discord Chat" src="https://img.shields.io/discord/701068342760570933"/></a>
+        <a href="https://crates.io/crates/mailgun_api"><img alt="Crate Info" src="https://img.shields.io/badge/Crate-Mailgun%20Api%20-yellow"/></a>
+        <a href="https://docs.rs/mailgun_api"><img alt="API Docs" src="https://img.shields.io/badge/Docs-Mailgun%20Api%20-blue"/></a>
+        <a href="https://discord.gg/ZHWmUaf"><img alt="Discord Chat" src="https://img.shields.io/badge/Discor-Spielrs%20-yellowgreen"/></a>
         <a href="https://paypal.me/dancespiele?locale.x=en_US"><img alt="Donate by Paypal" src="https://img.shields.io/badge/Donate-PayPal-green.svg"/></a>
     </p>
 </div>
