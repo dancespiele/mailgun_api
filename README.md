@@ -14,7 +14,7 @@ Send emails through mailgun in rust asynchronously
 
 ## How install it
 
-1. add the dependency in the Cargo.toml file of the project:
+1. Add the next dependencies in the Cargo.toml file of the project:
 
 ```toml
 reqwest = {version = "0.10", features = ["json"]}
@@ -76,7 +76,7 @@ EMAIL_FROM=[SENDER TEST]
 The dtos are structures used to transform the json retrieved from Mailung API in data accesible by the rust aplication.
 It wasn't possible to see any Mailgun documentation which specify which parameters are nullable then maybe is possible
 to get an error in the response because the Dto property is not typed as `Option` (please open an issue if that happens),
-for this reason the methods accept Generics which you need to pass the Dtos provide or yours 
+for this reason the methods accept Generics which you need to pass the Dtos provided or yours 
 
 ## Do you like Mailgun API?
 If you like Mailgun API, help us supporting the project:
