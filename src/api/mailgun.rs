@@ -57,7 +57,10 @@ impl MailungApi {
     }
 
     /// Get all the events
-    pub async fn get_all_events(&mut self) -> Result<Events, Error> {
+    pub async fn get_all_events<T>(&mut self) -> Result<T, Error>
+    where
+        T: DeserializeOwned,
+    {
         let response = reqwest::Client::new()
             .get(&format!(
                 "https://api:{}@{}/v3/{}/events",
@@ -65,14 +68,17 @@ impl MailungApi {
             ))
             .send()
             .await?
-            .json::<Events>()
+            .json::<T>()
             .await;
 
         response
     }
 
     /// Get a message content by Id
-    pub async fn get_message_by_id(&mut self, message_id: &str) -> Result<ReceiveMessage, Error> {
+    pub async fn get_message_by_id<T>(&mut self, message_id: &str) -> Result<T, Error>
+    where
+        T: DeserializeOwned,
+    {
         let response = reqwest::Client::new()
             .get(&format!(
                 "https://api:{}@{}/v3/domains/{}/messages/{}",
@@ -80,7 +86,7 @@ impl MailungApi {
             ))
             .send()
             .await?
-            .json::<ReceiveMessage>()
+            .json::<T>()
             .await;
 
         response
@@ -129,7 +135,7 @@ async fn should_get_message_by_id() {
     let mut mailgun = MailungApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
 
     let response = mailgun
-        .get_message_by_id("AgEFklR0xX7C4nx4_dpO_r0L4j1rOLT_ZA==")
+        .get_message_by_id::<ReceiveMessage>("id")
         .await
         .unwrap();
 
@@ -149,7 +155,7 @@ async fn should_all_the_events() {
 
     let mut mailgun = MailungApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
 
-    let response = mailgun.get_all_events().await.unwrap();
+    let response = mailgun.get_all_events::<Events>().await.unwrap();
 
     println!("Response: {:#?}", response);
 }
