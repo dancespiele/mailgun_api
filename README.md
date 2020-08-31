@@ -1,5 +1,14 @@
 # Mailgun API
 
+<div align="center">
+    <p>
+        <a href="https://crates.io/crates/mailgun_api"><img alt="Crate Info" src="https://img.shields.io/badge/yew__styles-framework%20styles-brightgreen"/></a>
+        <a href="https://docs.rs/mailgun_api"><img alt="API Docs" src="https://img.shields.io/badge/yew__styles-docs-informational"/></a>
+        <a href="https://discord.gg/ZHWmUaf"><img alt="Discord Chat" src="https://img.shields.io/discord/701068342760570933"/></a>
+        <a href="https://paypal.me/dancespiele?locale.x=en_US"><img alt="Donate by Paypal" src="https://img.shields.io/badge/Donate-PayPal-green.svg"/></a>
+    </p>
+</div>
+
 Send emails through mailgun in rust asynchronously
 
 ## How install it
@@ -70,8 +79,7 @@ for this reason the methods accept Generics which you need to pass the Dtos prov
 
 ## Do you like Mailgun API?
 If you like Mailgun API, help us supporting the project:
-- [Github Sponsors](https://github.com/sponsors/dancespiele) 
-- [Gitcoin](https://gitcoin.co/grants/1078/mailgun-api)
+- [Github Sponsors](https://github.com/sponsors/dancespiele)
 - [Paypal](https://paypal.me/dancespiele?locale.x=en_US)
 
 ## Roadmap
