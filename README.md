@@ -59,10 +59,10 @@ EMAIL_FROM=[SENDER TEST]
 
 - [x] Send email
 - [x] Retrieve Store Message
-- [x] Delete Stored Message
+- [ ] Delete Stored Message
 - [ ] Domains
 - [ ] IPs
-- [ ] Events
+- [x] Events
 - [ ] Stats
 - [ ] Tags
 - [ ] Suppressions
