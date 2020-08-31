@@ -17,6 +17,7 @@ Send emails through mailgun in rust asynchronously
 1. Add the next dependencies in the Cargo.toml file of the project:
 
 ```toml
+mailgun_api = "0.2"
 reqwest = {version = "0.10", features = ["json"]}
 serde = { version = "1.0", features = ["derive"]}
 serde_derive = "1.0"
