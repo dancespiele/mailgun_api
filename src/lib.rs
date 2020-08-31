@@ -57,6 +57,6 @@
 //! **Warning:** when you are running the tests you are sending a email to the receiver that you set
 //!
 
-mod api;
+pub mod api;
 
-pub use api::{EmailParams, MailungApi};
+pub use api::MailungApi;

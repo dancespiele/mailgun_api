@@ -1,4 +1,4 @@
-use super::EmailParams;
+use super::{EmailParams, Events, ReceiveMessage};
 use reqwest::Error;
 use serde::de::DeserializeOwned;
 use std::collections::HashMap;
@@ -9,6 +9,8 @@ pub struct MailungApi {
     api_key: String,
     /// There is two endpoint currently: api.mailgun.net and api.eu.mailgun.net
     endpoint: String,
+    /// Storage endpoint
+    storage_endpoint: String,
     /// Your email domain
     domain: String,
 }
@@ -19,6 +21,7 @@ impl MailungApi {
         Self {
             api_key: api_key.to_string(),
             endpoint: endpoint.to_string(),
+            storage_endpoint: endpoint.to_string().replace("api", "storage"),
             domain: domain.to_string(),
         }
     }
@@ -52,6 +55,36 @@ impl MailungApi {
 
         response
     }
+
+    /// Get all the events
+    pub async fn get_all_events(&mut self) -> Result<Events, Error> {
+        let response = reqwest::Client::new()
+            .get(&format!(
+                "https://api:{}@{}/v3/{}/events",
+                self.api_key, self.endpoint, self.domain
+            ))
+            .send()
+            .await?
+            .json::<Events>()
+            .await;
+
+        response
+    }
+
+    /// Get a message content by Id
+    pub async fn get_message_by_id(&mut self, message_id: &str) -> Result<ReceiveMessage, Error> {
+        let response = reqwest::Client::new()
+            .get(&format!(
+                "https://api:{}@{}/v3/domains/{}/messages/{}",
+                self.api_key, self.storage_endpoint, self.domain, message_id
+            ))
+            .send()
+            .await?
+            .json::<ReceiveMessage>()
+            .await;
+
+        response
+    }
 }
 
 #[tokio::test]
@@ -80,4 +113,43 @@ async fn shoul_send_email_with_text() {
     let response = mailgun.send_email::<HashMap<String, String>>(params).await;
 
     assert_eq!(response.is_ok(), true)
+}
+
+#[tokio::test]
+async fn should_get_message_by_id() {
+    use dotenv::dotenv;
+    use std::env;
+
+    dotenv().ok();
+
+    let mailgun_secret = env::var("MAILGUN_SECRET").expect("MAILGUN_SECRET must be set");
+    let mailgun_domain = env::var("MAILGUN_DOMAIN").expect("MAILGUN_DOMAIN must be set");
+    let mailgun_endpoint = env::var("MAILGUN_ENDPOINT").expect("MAILGUN_ENDPOINT must be set");
+
+    let mut mailgun = MailungApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
+
+    let response = mailgun
+        .get_message_by_id("AgEFklR0xX7C4nx4_dpO_r0L4j1rOLT_ZA==")
+        .await
+        .unwrap();
+
+    println!("Response: {:#?}", response);
+}
+
+#[tokio::test]
+async fn should_all_the_events() {
+    use dotenv::dotenv;
+    use std::env;
+
+    dotenv().ok();
+
+    let mailgun_secret = env::var("MAILGUN_SECRET").expect("MAILGUN_SECRET must be set");
+    let mailgun_domain = env::var("MAILGUN_DOMAIN").expect("MAILGUN_DOMAIN must be set");
+    let mailgun_endpoint = env::var("MAILGUN_ENDPOINT").expect("MAILGUN_ENDPOINT must be set");
+
+    let mut mailgun = MailungApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
+
+    let response = mailgun.get_all_events().await.unwrap();
+
+    println!("Response: {:#?}", response);
 }

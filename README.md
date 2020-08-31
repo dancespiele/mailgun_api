@@ -58,8 +58,8 @@ EMAIL_FROM=[SENDER TEST]
 ## Roadmap
 
 - [x] Send email
-- [ ] Retrieve Store Message
-- [ ] Delete Stored Message
+- [x] Retrieve Store Message
+- [x] Delete Stored Message
 - [ ] Domains
 - [ ] IPs
 - [ ] Events
