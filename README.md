@@ -69,7 +69,7 @@ to get an error in the response because the Dto property is not typed as `Option
 for this reason the methods accept Generics which you need to pass the Dtos provide or yours 
 
 ## Do you like Mailgun API?
-* If you like Mailgun API, help us supporting the project:
+If you like Mailgun API, help us supporting the project:
 - [Github Sponsors](https://github.com/sponsors/dancespiele) 
 - [Gitcoin](https://gitcoin.co/grants/1078/mailgun-api)
 - [Paypal](https://paypal.me/dancespiele?locale.x=en_US)
