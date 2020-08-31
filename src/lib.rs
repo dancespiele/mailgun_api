@@ -57,7 +57,7 @@
 //! EMAIL_FROM=[SENDER TEST]
 //! ```
 //!
-//! 2. Execute the test `cargo test`
+//! 2. Execute the tests `cargo test`
 //!
 //! **Warning:** when you are running the tests you are sending a email to the receiver that you set
 //!
