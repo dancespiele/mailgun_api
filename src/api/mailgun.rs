@@ -1,11 +1,11 @@
-use super::{EmailParams, Events, ReceiveMessage};
+use super::EmailParams;
 use reqwest::Error;
 use serde::de::DeserializeOwned;
 use std::collections::HashMap;
 
-/// MailungApi struct where include all the endpoints
-pub struct MailungApi {
-    /// Mailung api secret
+/// MailgunApi struct where include all the endpoints
+pub struct MailgunApi {
+    /// Mailgun api secret
     api_key: String,
     /// There is two endpoint currently: api.mailgun.net and api.eu.mailgun.net
     endpoint: String,
@@ -15,8 +15,8 @@ pub struct MailungApi {
     domain: String,
 }
 
-impl MailungApi {
-    /// Set the mailung paramenters
+impl MailgunApi {
+    /// Set the mailgun paramenters
     pub fn new(api_key: &str, endpoint: &str, domain: &str) -> Self {
         Self {
             api_key: api_key.to_string(),
@@ -27,6 +27,37 @@ impl MailungApi {
     }
 
     /// Send an email
+    /// # Example:
+    /// ```rust
+    /// #[tokio::test]
+    ///    async fn shoul_send_email_with_text() {
+    ///        use super::EmailParams;
+    ///        use dotenv::dotenv;
+    ///        use std::env;
+    ///
+    ///        dotenv().ok();
+    ///
+    ///        let mailgun_secret = env::var("MAILGUN_SECRET").expect("MAILGUN_SECRET must be set");
+    ///        let mailgun_domain = env::var("MAILGUN_DOMAIN").expect("MAILGUN_DOMAIN must be set");
+    ///        let mailgun_endpoint = env::var("MAILGUN_ENDPOINT").expect("MAILGUN_ENDPOINT must be set");
+    ///        let sender = env::var("EMAIL_FROM").expect("MAIL_FROM must be set");
+    ///        let receiver = env::var("EMAIL_RECEIVER_TEST").expect("EMAIL_RECEIVER_TEST must be set");
+    ///
+    ///        let params = EmailParams {
+    ///            from: sender,
+    ///            to: receiver,
+    ///            subject: "test mailgung api".to_string(),
+    ///            text: Some("hello this is a test".to_string()),
+    ///            html: None,
+    ///        };
+    ///
+    ///        let mut mailgun = MailgunApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
+    ///
+    ///        let response = mailgun.send_email::<HashMap<String, String>>(params).await;
+    ///
+    ///        assert_eq!(response.is_ok(), true)
+    ///    }
+    /// ```
     pub async fn send_email<T>(&mut self, email_params: EmailParams) -> Result<T, Error>
     where
         T: DeserializeOwned,
@@ -57,6 +88,27 @@ impl MailungApi {
     }
 
     /// Get all the events
+    /// # Example:
+    /// ```rust
+    /// #[tokio::test]
+    /// async fn should_get_all_the_events() {
+    ///     use super::Events;
+    ///     use dotenv::dotenv;
+    ///     use std::env;
+    ///
+    ///     dotenv().ok();
+    ///
+    ///     let mailgun_secret = env::var("MAILGUN_SECRET").expect("MAILGUN_SECRET must be set");
+    ///     let mailgun_domain = env::var("MAILGUN_DOMAIN").expect("MAILGUN_DOMAIN must be set");
+    ///     let mailgun_endpoint = env::var("MAILGUN_ENDPOINT").expect("MAILGUN_ENDPOINT must be set");
+    ///
+    ///     let mut mailgun = MailgunApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
+    ///
+    ///     let response = mailgun.get_all_events::<Events>().await.unwrap();
+    ///
+    ///     println!("Response: {:#?}", response);
+    /// }
+    /// ```
     pub async fn get_all_events<T>(&mut self) -> Result<T, Error>
     where
         T: DeserializeOwned,
@@ -75,6 +127,31 @@ impl MailungApi {
     }
 
     /// Get a message content by Id
+    /// # Example
+    /// ```rust
+    /// #[tokio::test]
+    /// async fn should_get_message_by_id() {
+    ///     use super::{Events, ReceiveMessage};
+    ///     use dotenv::dotenv;
+    ///     use std::env;
+    ///
+    ///     dotenv().ok();
+    ///
+    ///     let mailgun_secret = env::var("MAILGUN_SECRET").expect("MAILGUN_SECRET must be set");
+    ///     let mailgun_domain = env::var("MAILGUN_DOMAIN").expect("MAILGUN_DOMAIN must be set");
+    ///     let mailgun_endpoint = env::var("MAILGUN_ENDPOINT").expect("MAILGUN_ENDPOINT must be set");
+    ///
+    ///     let mut mailgun = MailgunApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
+    ///
+    ///     let events = mailgun.get_all_events::<Events>().await.unwrap();
+    ///
+    ///     let response = mailgun
+    ///         .get_message_by_id::<ReceiveMessage>(&events.items[events.items.len() - 1].storage.key)
+    ///         .await
+    ///         .unwrap();
+    ///
+    ///     println!("Response: {:#?}", response);
+    /// }
     pub async fn get_message_by_id<T>(&mut self, message_id: &str) -> Result<T, Error>
     where
         T: DeserializeOwned,
@@ -95,6 +172,7 @@ impl MailungApi {
 
 #[tokio::test]
 async fn shoul_send_email_with_text() {
+    use super::EmailParams;
     use dotenv::dotenv;
     use std::env;
 
@@ -114,7 +192,7 @@ async fn shoul_send_email_with_text() {
         html: None,
     };
 
-    let mut mailgun = MailungApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
+    let mut mailgun = MailgunApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
 
     let response = mailgun.send_email::<HashMap<String, String>>(params).await;
 
@@ -122,7 +200,8 @@ async fn shoul_send_email_with_text() {
 }
 
 #[tokio::test]
-async fn should_get_message_by_id() {
+async fn should_get_all_the_events() {
+    use super::Events;
     use dotenv::dotenv;
     use std::env;
 
@@ -132,18 +211,16 @@ async fn should_get_message_by_id() {
     let mailgun_domain = env::var("MAILGUN_DOMAIN").expect("MAILGUN_DOMAIN must be set");
     let mailgun_endpoint = env::var("MAILGUN_ENDPOINT").expect("MAILGUN_ENDPOINT must be set");
 
-    let mut mailgun = MailungApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
+    let mut mailgun = MailgunApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
 
-    let response = mailgun
-        .get_message_by_id::<ReceiveMessage>("id")
-        .await
-        .unwrap();
+    let response = mailgun.get_all_events::<Events>().await.unwrap();
 
     println!("Response: {:#?}", response);
 }
 
 #[tokio::test]
-async fn should_all_the_events() {
+async fn should_get_message_by_id() {
+    use super::{Events, ReceiveMessage};
     use dotenv::dotenv;
     use std::env;
 
@@ -153,9 +230,14 @@ async fn should_all_the_events() {
     let mailgun_domain = env::var("MAILGUN_DOMAIN").expect("MAILGUN_DOMAIN must be set");
     let mailgun_endpoint = env::var("MAILGUN_ENDPOINT").expect("MAILGUN_ENDPOINT must be set");
 
-    let mut mailgun = MailungApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
+    let mut mailgun = MailgunApi::new(&mailgun_secret, &mailgun_endpoint, &mailgun_domain);
 
-    let response = mailgun.get_all_events::<Events>().await.unwrap();
+    let events = mailgun.get_all_events::<Events>().await.unwrap();
+
+    let response = mailgun
+        .get_message_by_id::<ReceiveMessage>(&events.items[events.items.len() - 1].storage.key)
+        .await
+        .unwrap();
 
     println!("Response: {:#?}", response);
 }

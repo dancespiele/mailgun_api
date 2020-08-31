@@ -13,7 +13,7 @@
 //! ```rust
 //! #[tokio::test]
 //! async fn shoul_send_email_with_text() {
-//!     use std::collections::HashMap;
+//!     use super::EmailParams;
 //!     use dotenv::dotenv;
 //!     use std::env;
 //!
@@ -59,4 +59,4 @@
 
 pub mod api;
 
-pub use api::MailungApi;
+pub use api::MailgunApi;
