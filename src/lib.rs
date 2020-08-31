@@ -6,7 +6,12 @@
 //! 1. add the dependency in the Cargo.toml file of the project:
 //!
 //! ```toml
-//! mailgun_api = "0.1"
+//! mailgun_api = "0.2"
+//! reqwest = {version = "0.10", features = ["json"]}
+//! serde = { version = "1.0", features = ["derive"]}
+//! serde_derive = "1.0"
+//! serde_json = "1.0"
+//! tokio = { version = "0.2", features = ["macros"]}
 //! ```
 //!
 //! ## Example
@@ -56,6 +61,12 @@
 //!
 //! **Warning:** when you are running the tests you are sending a email to the receiver that you set
 //!
+//! ## About Dtos
+//!
+//! The dtos are structures used to transform the json retrieved from Mailung API in data accesible by the rust aplication.
+//! It wasn't possible to see any Mailgun documentation which specify which parameters are nullable then maybe is possible
+//! to get an error in the response because the Dto property is not typed as `Option` (please open an issue if that happens),
+//! for this reason the methods accept Generics which you need to pass the Dtos provided or yours
 
 pub mod api;
 
