@@ -81,7 +81,7 @@ for this reason the methods accept Generics which you need to pass the Dtos prov
 
 ## Do you like Mailgun API?
 If you like Mailgun API, help us supporting the project:
-- [Gitcoin](https://gitcoin.co/grants/1048/yew-styles)
+- [Gitcoin](https://gitcoin.co/grants/1078/mailgun-api)
 - [Github Sponsors](https://github.com/sponsors/dancespiele)
 - [Paypal](https://paypal.me/dancespiele?locale.x=en_US)
 
