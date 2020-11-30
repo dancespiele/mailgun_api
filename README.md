@@ -81,9 +81,10 @@ for this reason the methods accept Generics which you need to pass the Dtos prov
 
 ## Do you like Mailgun API?
 If you like Mailgun API, help us supporting the project:
-- [Gitcoin](https://gitcoin.co/grants/1078/mailgun-api)
+- Sending coins to the address **0x619d3FA3bD7CF497d9899Ccd4d7b5663Ff318e52**
+- BAT rewards in case that you use [Brave Browser](https://brave.com/)
 - [Github Sponsors](https://github.com/sponsors/dancespiele)
-- [Paypal](https://paypal.me/dancespiele?locale.x=en_US)
+- Burst coins to the address BURST-DPN6-2AT3-FCRL-9BBKG
 
 ## Roadmap
 
